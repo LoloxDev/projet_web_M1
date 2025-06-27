@@ -30,6 +30,6 @@ export class MessageService {
     );
 
     // 3) Peupler l'auteur pour le retour GraphQL
-    return this.messageModel.findById(msg._id).populate('author').lean();
+    return this.messageModel.findById(msg._id).populate('author');
   }
 }

@@ -15,22 +15,22 @@ export class ChatResolver {
   // Queries
   @Query(() => User, { nullable: true })
   async me(): Promise<User | null> {
-    return this.userModel.findOne().lean();
+    return this.userModel.findOne();
   }
 
   @Query(() => [User])
   async users(): Promise<User[]> {
-    return this.userModel.find().lean();
+    return this.userModel.find();
   }
 
   @Query(() => [Conversation])
   async conversations(): Promise<Conversation[]> {
-    return this.convModel.find().populate(['participants', 'messages']).lean();
+    return this.convModel.find().populate(['participants', 'messages']);
   }
 
   @Query(() => Conversation, { nullable: true })
   async conversation(@Args('id', { type: () => ID }) id: string) {
-    return this.convModel.findById(id).populate(['participants', 'messages']).lean();
+    return this.convModel.findById(id).populate(['participants', 'messages']);
   }
 
   // Mutations

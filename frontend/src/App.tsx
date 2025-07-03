@@ -196,6 +196,12 @@ function App() {
     }
   }
 
+  function handleLogout() {
+    localStorage.removeItem('token');
+    setCurrentUser(null);
+    setSelectedConv(null);
+  }
+
   const userConvs = currentUser
       ? conversations.filter((c) => c.participants.some((p) => String(p.id) === String(currentUser.id)))
       : [];
@@ -217,6 +223,7 @@ function App() {
             <div style={{ display: 'flex', gap: '2rem', marginTop: '1rem' }}>
               <div>
                 <h2>Bienvenue {currentUser.username}</h2>
+                <button onClick={handleLogout} style={{ marginBottom: '1rem' }}>Se déconnecter</button>
                 {otherUsers.length > 0 && (
                     <div>
                       <h4>Démarrer une conversation</h4>
